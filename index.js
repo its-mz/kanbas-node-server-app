@@ -47,11 +47,3 @@ ModuleRoutes(app);
 AssignmentRoutes(app);
 
 app.listen(process.env.PORT || 4000);
-
-app.use(
-  cors({
-    credentials: true,
-    origin:
-      process.env.NETLIFY_URL || "http://localhost:3000",
-  })
-);
