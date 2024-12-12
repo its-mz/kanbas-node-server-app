@@ -8,9 +8,7 @@ export const createUser = (user) => {
   // users = [...users, newUser];
   // return newUser;
 };
-export const findAllUsers = () => model.find(); //select * from users
-// export const findUserById = (userId) =>
-//   model.findUserById(userId);
+export const findAllUsers = () => model.find();
 export const findUserById = (userId) =>
   model.findById(userId);
 

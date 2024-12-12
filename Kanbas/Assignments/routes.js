@@ -5,12 +5,33 @@ export default function AssignmentRoutes(app) {
     "/api/assignments/:assignmentId",
     async (req, res) => {
       const { assignmentId } = req.params;
-      const status = await assignmentsDao.deleteAssignment(
-        assignmentId
-      );
-      res.send(status);
+      try {
+        const result =
+          await assignmentsDao.deleteAssignment(
+            assignmentId
+          );
+
+        res.json({
+          acknowledged: result.acknowledged,
+          deletedCount: result.deletedCount,
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
     }
   );
+
+  // app.delete(
+  //   "/api/assignments/:assignmentId",
+  //   async (req, res) => {
+  //     const { assignmentId } = req.params;
+  //     const status = await assignmentsDao.deleteAssignment(
+  //       assignmentId
+  //     );
+  //     res.send(status);
+  //   }
+  // );
 
   app.put(
     "/api/assignments/:assignmentId",
